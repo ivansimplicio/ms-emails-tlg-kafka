@@ -47,16 +47,16 @@
             </tr>
         </thead>
         <tbody>
-            @each(bet in content.bets)
-              <tr>
-                <td>{{ bet.type }}</td>
-                <td>{{ bet.chosenNumbers }}</td>
-                <td>{{ bet.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</td>
-              </tr>
-            @end
+            {{#each content.bets}}
+            <tr>
+              <td>{{ this.type }}</td>
+              <td>{{ this.chosenNumbers }}</td>
+              <td>R$ {{ this.price }}</td>
+            </tr>
+            {{/each}}
         </tbody>
     </table>
-    <p>Todas essas apostas foram registradas no sistema, com valor total de {{ content.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}.</p>
+    <p>Todas essas apostas foram registradas no sistema, com valor total de R$ {{ content.amount }}.</p>
     <div class="header">
         <p>Estamos torcendo por você!</p>
         <p>Equipe TGL</p>

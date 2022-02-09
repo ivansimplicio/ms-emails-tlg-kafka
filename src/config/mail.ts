@@ -1,3 +1,5 @@
+require('dotenv/config');
+
 const mailConfig = {
   host: process.env.SMTP_HOST,
   port: +process.env.SMTP_PORT,
@@ -8,6 +10,7 @@ const mailConfig = {
   secure: false,
   logger: false,
   debug: false,
+  tls: { rejectUnauthorized: false },
 };
 
 export default mailConfig;
