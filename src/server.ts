@@ -15,11 +15,11 @@ const consumer = kafka.consumer({ groupId: 'ms-emails' });
 
 const run = async () => {
   await consumer.connect();
-  await consumer.subscribe({ topic: 'welcome', fromBeginning: true });
-  await consumer.subscribe({ topic: 'forgot_password', fromBeginning: true });
-  await consumer.subscribe({ topic: 'new_bet', fromBeginning: true });
-  await consumer.subscribe({ topic: 'call_players', fromBeginning: true });
-  await consumer.subscribe({ topic: 'notify_admin', fromBeginning: true });
+  await consumer.subscribe({ topic: 'welcome', fromBeginning: false });
+  await consumer.subscribe({ topic: 'forgot_password', fromBeginning: false });
+  await consumer.subscribe({ topic: 'new_bet', fromBeginning: false });
+  await consumer.subscribe({ topic: 'call_players', fromBeginning: false });
+  await consumer.subscribe({ topic: 'notify_admin', fromBeginning: false });
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
