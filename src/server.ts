@@ -22,7 +22,7 @@ const run = async () => {
   await consumer.subscribe({ topic: 'notify_admin', fromBeginning: false });
 
   await consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
+    eachMessage: async ({ topic, message }) => {
       mailer.sendEmail({
         template: topic.toString(),
         content: message.value?.toString(),
