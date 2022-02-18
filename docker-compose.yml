@@ -1,13 +1,13 @@
 version: "3"
 networks:
-  adonis-api:
+  tgl:
     external: true
 
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     networks:
-      - adonis-api
+      - tgl
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -15,7 +15,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:latest
     networks:
-      - adonis-api
+      - tgl
     depends_on:
       - zookeeper
     ports:
@@ -29,17 +29,17 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   app:
-    container_name: 'ms-emails-tlg-kafka'
+    container_name: tgl-ms-emails-express
     build:
       context: .
       dockerfile: Dockerfile
     command: npm run dev
-    image: ms-emails-tlg-kafka
+    image: tgl-ms-emails-express
     volumes:
       - .:/app
       - /app/node_modules
     networks:
-      - adonis-api
+      - tgl
     depends_on:
       - kafka
     ports:
